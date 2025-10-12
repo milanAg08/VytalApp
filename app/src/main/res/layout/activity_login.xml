@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@color/mint_background"
+    tools:context=".LoginActivity">
+
+    <!-- Logo / App name -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="60dp"
+        android:paddingBottom="20dp">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_vytal_logo"
+            android:contentDescription="App Logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to Vytal"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/dark_green"
+            android:layout_marginTop="12dp" />
+    </LinearLayout>
+
+    <!-- Login container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="32dp"
+        android:background="@drawable/rounded_white_bg"
+        android:elevation="4dp">
+
+        <TextView
+            android:id="@+id/loginTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/dark_green"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"/>
+
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint=" Enter Your Email"
+            android:drawableStart="@drawable/ic_email"
+            android:background="@drawable/rounded_edittext_bg"
+            android:paddingStart="16dp"
+            android:inputType="textPersonName"
+            android:textColorHint="@color/hint_green"
+            android:textColor="@color/dark_green"/>
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Password"
+            android:drawableStart="@drawable/ic_password"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rounded_edittext_bg"
+            android:paddingStart="16dp"
+            android:inputType="textPassword"
+            android:textColorHint="@color/hint_green"
+            android:textColor="@color/dark_green"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:text="Log In"
+            android:backgroundTint="@color/dark_green"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password?"
+            android:textColor="@color/dark_green"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/tvSignup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don’t have an account? Sign Up"
+            android:textColor="@color/dark_green"
+            android:textSize="14sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
+</LinearLayout>
