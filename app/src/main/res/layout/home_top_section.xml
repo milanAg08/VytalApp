@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal"
+    android:background="#f5f7f4">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How it works"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#222222"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Image Row -->
+    <ImageView
+        android:layout_width="260dp"
+        android:layout_height="200dp"
+        android:src="@drawable/aesthetic"
+        android:layout_marginEnd="12dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/rounded_bg" />
+
+    <!-- Subheading -->
+    <TextView
+        android:id="@+id/subHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get personalized support for your health journey"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:layout_marginBottom="8dp"
+        android:gravity="center" />
+
+    <!-- Description -->
+    <TextView
+        android:id="@+id/descriptionText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Answer a few quick questions to connect with tools, experts, and communities designed for your condition.
+Track your reports, join wellness events like yoga, and share experiences with others managing the same chronic condition."
+        android:textSize="14sp"
+        android:textColor="#555555"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp" />
+
+</LinearLayout>

@@ -1,5 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Primary Brand Colors -->
+    <color name="colorPrimary">#40A2E3</color> <!-- Soft purple (top bar) -->
+    <color name="colorPrimaryVariant">#BBE2EC</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+
+    <!-- Secondary Accent Colors -->
+    <color name="colorSecondary">#10B981</color> <!-- Mint green accent -->
+    <color name="colorSecondaryVariant">#059669</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+
+    <!-- Backgrounds -->
+    <color name="colorBackground">#E8F5F2</color> <!-- Very light mint background -->
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnBackground">#1A1A1A</color>
+    <color name="colorOnSurface">#1A1A1A</color>
+
+    <!-- Additional UI Colors -->
+    <color name="hintText">#6B7280</color> <!-- Muted gray -->
+    <color name="dividerColor">#E5E7EB</color>
+    <color name="colorError">#B00020</color>
+    <color name="colorOnError">#FFFFFF</color>
+
+    <!-- Buttons -->
+    <color name="buttonGreen">#BBE2EC</color>
+    <color name="buttonGreenDark">#0D9276</color>
+
+    <!-- Text -->
+    <color name="textDark">#1A1A1A</color>
+    <color name="white">#FFFFFF</color>
 </resources>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Header / title -->
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/vytal_logo"/>
+
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:id="@+id/tv_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/home_title"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"/>
+        </LinearLayout>
+
+        <!-- Search bar -->
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="Search doctors, services, articles..."
+            android:iconifiedByDefault="false"/>
+
+        <include
+            layout="@layout/home_top_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <!-- Featured articles label -->
+        <TextView
+            android:id="@+id/tv_featured"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Featured articles"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <!-- Articles list -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_articles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:nestedScrollingEnabled="false"/>
+
+        <!-- Quick action cards for Community & Events (simple) -->
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Community &amp; Engagement"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Disease-specific groups, events and rewards to encourage participation."
+                android:layout_marginTop="8dp"/>
+
+            <!-- Placeholder buttons -->
+            <Button
+                android:id="@+id/btn_community"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#0B0B0B"
+                android:text="Open Communities"
+                android:backgroundTint="@color/buttonGreen"
+                android:layout_marginTop="8dp"/>
+
+            <Button
+                android:id="@+id/btn_events"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#0B0B0B"
+                android:backgroundTint="@color/buttonGreen"
+                android:text="View Events"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnBmiCalculator"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:drawableTop="@drawable/baseline_calculate_24"
+                android:backgroundTint="@color/buttonGreenDark"
+                android:layout_weight="1"
+                android:text="BMI Calculator"
+                android:textAllCaps="false"
+                android:background="@drawable/rounded_btn"
+                android:textColor="@color/white" />
+            <Button
+                android:id="@+id/btnSymptomChecker"
+                android:layout_marginLeft="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_weight="0.8"
+                android:drawableTop="@drawable/symptom"
+                android:backgroundTint="@color/buttonGreenDark"
+                android:text="Symptom Checker"
+                android:textAllCaps="false"
+                android:background="@drawable/rounded_btn"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

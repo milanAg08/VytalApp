@@ -1,0 +1,59 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.SymptomCheckerFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:text="Symptom Checker"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:text="Select the symptoms you're experiencing:"
+            android:textSize="16sp"
+            android:textColor="@color/textDark"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <CheckBox android:id="@+id/cbFever" android:text="Fever" style="@style/SymptomCheckbox" />
+        <CheckBox android:id="@+id/cbCough" android:text="Cough" style="@style/SymptomCheckbox" />
+        <CheckBox android:id="@+id/cbHeadache" android:text="Headache" style="@style/SymptomCheckbox" />
+        <CheckBox android:id="@+id/cbFatigue" android:text="Fatigue" style="@style/SymptomCheckbox" />
+        <CheckBox android:id="@+id/cbSoreThroat" android:text="Sore throat" style="@style/SymptomCheckbox" />
+        <CheckBox android:id="@+id/cbNausea" android:text="Nausea" style="@style/SymptomCheckbox" />
+        <CheckBox android:id="@+id/cbBodyPain" android:text="Body pain" style="@style/SymptomCheckbox" />
+
+        <Button
+            android:id="@+id/btnCheck"
+            android:text="Check Symptoms"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/buttonGreenDark"
+            android:textColor="@color/white"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvResult"
+            android:text="Your possible diagnosis will appear here."
+            android:textSize="16sp"
+            android:textColor="@color/textDark"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</ScrollView>
