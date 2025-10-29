@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "14762398519",
+    "project_id": "vytal-7e88c",
+    "storage_bucket": "vytal-7e88c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14762398519:android:ed87d9bf26d0e7ffb100b2",
+        "android_client_info": {
+          "package_name": "com.example.finalproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoqi9ZoR-rI7eFdSoIECSEPiTBF3aTDX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14762398519:android:bf8b28d3fe691690b100b2",
+        "android_client_info": {
+          "package_name": "com.example.vytal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoqi9ZoR-rI7eFdSoIECSEPiTBF3aTDX0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
