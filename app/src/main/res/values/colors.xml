@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="vytal_purple">#7B61FF</color>
+    <color name="vytal_mint_light">#E6F4EA</color>
+    <color name="vytal_green">#70C49A</color>
+    <color name="white">#FFFFFF</color>
+    <color name="text_dark">#333333</color>
+    <color name="vytal_teal">#1A7F72</color>
+    <color name="vytal_bg_light">#E6F3EF</color>
+
+    <color name="black">#000000</color>
 </resources>
