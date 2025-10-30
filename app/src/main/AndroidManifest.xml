@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.vytal">
+    >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,9 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vytal">
 
-        <!-- Homepage Activity -->
+        <!-- 👇 LoginActivity is the launcher -->
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,17 +22,18 @@
             </intent-filter>
         </activity>
 
-        <!-- Other Activities from login branch -->
-        <activity
-            android:name=".HomeActivity"
-            android:exported="true" />
+        <!-- Other Activities -->
         <activity
             android:name=".SignupActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HomeActivity"
             android:exported="true" />
 
     </application>
+
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.example.vytal.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,9 +14,9 @@ import com.example.vytal.R
 import com.example.vytal.model.Article
 import com.example.vytal.model.ArticlesAdapter
 import android.widget.Button
+import com.google.firebase.auth.FirebaseAuth
 import androidx.core.content.ContextCompat
-
-
+import com.example.vytal.LoginActivity
 
 
 // Fragment representing the home screen
@@ -93,6 +94,19 @@ class HomeFragment : Fragment() {
                 .replace(R.id.fragment_container, SymptomCheckerFragment())
                 .addToBackStack(null)
                 .commit()
+        }
+
+        val auth = FirebaseAuth.getInstance()
+
+        val logoutBtn = view.findViewById<Button>(R.id.btnLogout)
+        logoutBtn.setOnClickListener {
+            auth.signOut()
+
+            val intent = Intent(requireContext(), LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            requireActivity().finish()
+
         }
 
         // Return the inflated view
