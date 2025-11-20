@@ -18,6 +18,12 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.home_container, CommunityFragment())
+            .commit()
+
         auth = FirebaseAuth.getInstance()
 
         val welcomeText = findViewById<TextView>(R.id.tvWelcome)
@@ -26,6 +32,7 @@ class HomeActivity : AppCompatActivity() {
         // Get current user email
         val user = auth.currentUser
         welcomeText.text = "Welcome to Vytal, ${user?.email ?: "Guest"}!"
+
 
         logoutBtn.setOnClickListener {
             auth.signOut()

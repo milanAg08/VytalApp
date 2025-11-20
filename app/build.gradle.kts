@@ -34,6 +34,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.12.0")
+    implementation("com.google.firebase:firebase-firestore-ktx:24.9.1")
 
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
 
@@ -41,6 +42,8 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
     implementation("androidx.core:core-ktx:1.17.0")
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     // =======================================================================
 }
