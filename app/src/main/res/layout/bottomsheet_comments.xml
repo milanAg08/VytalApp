@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Comments List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/commentsRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+
+    <!-- Input Box -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/commentInput"
+            android:hint="Write a comment..."
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnSend"
+            android:text="Send"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="#008EFF"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>

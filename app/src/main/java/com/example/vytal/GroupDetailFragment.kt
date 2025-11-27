@@ -12,17 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 
+private lateinit var postsRecycler: RecyclerView
+private lateinit var postsAdapter: PostsAdapter
+private val postsList = ArrayList<Post>()
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [GroupDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class GroupDetailFragment : Fragment() {
 
     private lateinit var webView: WebView
@@ -57,6 +50,20 @@ class GroupDetailFragment : Fragment() {
 
         // Load existing comments
         loadComments()
+
+        // ----------- POSTS RECYCLER SETUP -------------
+        postsRecycler = view.findViewById(R.id.postsRecycler)
+        postsRecycler.layoutManager = LinearLayoutManager(requireContext())
+        postsAdapter = PostsAdapter(postsList, groupId)
+        postsRecycler.adapter = postsAdapter
+
+        // Load posts
+        loadPosts()
+
+        // Create post
+        view.findViewById<View>(R.id.fabCreatePost).setOnClickListener {
+            openCreatePostDialog()
+        }
 
         btnSubmit.setOnClickListener {
             val text = commentInput.text.toString().trim()
@@ -109,5 +116,28 @@ class GroupDetailFragment : Fragment() {
 
                 adapter.notifyDataSetChanged()
             }
+    }
+
+    // ----------------- FIXED: SEPARATE FUNCTION -----------------
+    private fun loadPosts() {
+        db.collection("community_groups")
+            .document(groupId)
+            .collection("posts")
+            .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
+            .addSnapshotListener { snapshot, _ ->
+
+                postsList.clear()
+                for (doc in snapshot!!) {
+                    val post = doc.toObject(Post::class.java)
+                    post.postId = doc.id
+                    postsList.add(post)
+                }
+                postsAdapter.notifyDataSetChanged()
+            }
+    }
+
+    private fun openCreatePostDialog() {
+        CreatePostDialog.newInstance(groupId)
+            .show(parentFragmentManager, "createPost")
     }
 }

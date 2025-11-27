@@ -1,35 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- WebView for showing article -->
-    <WebView
-        android:id="@+id/groupWebView"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <!-- Comment input -->
-    <EditText
-        android:id="@+id/commentInput"
-        android:layout_width="match_parent"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- WebView -->
+            <WebView
+                android:id="@+id/groupWebView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                tools:ignore="WebViewLayout" />
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/titlePosts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/community_posts"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp" />
+
+            <!-- POSTS LIST -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/postsRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never" />
+
+            <!-- COMMENT INPUT -->
+            <EditText
+                android:id="@+id/commentInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/write_your_review"
+                android:padding="12dp" />
+
+            <!-- SUBMIT BUTTON -->
+            <Button
+                android:id="@+id/btnSubmitComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/submit_review" />
+
+            <!-- COMMENTS LIST -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/commentsRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Floating Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabCreatePost"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Write your review..."
-        android:padding="12dp"/>
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/todo"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="@color/purple_500"
+        app:tint="@android:color/white" />
 
-    <!-- Submit comment -->
-    <Button
-        android:id="@+id/btnSubmitComment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Submit Review"/>
+</FrameLayout>
 
-    <!-- List of comments -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/commentsRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
