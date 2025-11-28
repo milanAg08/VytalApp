@@ -41,15 +41,18 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-database")
-    implementation("com.google.firebase:firebase-storage")   // ✅ ADD THIS
+    implementation("com.google.firebase:firebase-storage")
 
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-
-    // Glide
-    implementation("com.github.bumptech.glide:glide:4.15.1")
     implementation(libs.androidx.recyclerview)
-    kapt("com.github.bumptech.glide:compiler:4.15.1")
+
+    // ✅ GLIDE (ONLY ONCE)
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
 }
+
+
+
 
 
