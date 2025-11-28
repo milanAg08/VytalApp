@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.DialogFragment
 import com.google.firebase.auth.FirebaseAuth
@@ -19,21 +20,15 @@ class CreatePostDialog : DialogFragment() {
     private val db = FirebaseFirestore.getInstance()
     private var imageUri: Uri? = null
 
-    private fun requestImagePermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            requestPermissions(
-                arrayOf(android.Manifest.permission.READ_MEDIA_IMAGES),
-                1001
-            )
-        }
-    }
+    private var selectedPreview: ImageView? = null
+    private var pickImageBtn: ImageView? = null
 
     companion object {
         fun newInstance(groupId: String): CreatePostDialog {
             val dialog = CreatePostDialog()
-            val args = Bundle()
-            args.putString("groupId", groupId)
-            dialog.arguments = args
+            dialog.arguments = Bundle().apply {
+                putString("groupId", groupId)
+            }
             return dialog
         }
     }
@@ -42,40 +37,37 @@ class CreatePostDialog : DialogFragment() {
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             if (uri != null) {
                 imageUri = uri
-                val preview = dialog?.findViewById<ImageView>(R.id.selectedImagePreview)
-                preview?.visibility = ImageView.VISIBLE
-                preview?.setImageURI(uri)
+                selectedPreview?.visibility = View.VISIBLE
+                selectedPreview?.setImageURI(uri)
             }
         }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-
         val dialog = Dialog(requireContext())
-        dialog.setContentView(R.layout.dialog_create_post)  // MUST MATCH FILE NAME
+        dialog.setContentView(R.layout.dialog_create_post)
 
         val groupId = arguments?.getString("groupId") ?: ""
 
         val postInput = dialog.findViewById<EditText>(R.id.postInput)
         val btnSubmit = dialog.findViewById<Button>(R.id.btnSubmitPost)
-        val pickImageBtn = dialog.findViewById<ImageView>(R.id.btnPickImage)
 
-        dialog.window?.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
+        // ⭐ Store preview once (NO NULL)
+        selectedPreview = dialog.findViewById(R.id.selectedImagePreview)
+
+        // ⭐ Correct button type
+        val pickImageBtn = dialog.findViewById<Button>(R.id.btnPickImage)
+
 
         pickImageBtn?.setOnClickListener {
-            requestImagePermission()
             pickImageLauncher.launch("image/*")
         }
 
-        btnSubmit?.setOnClickListener {
+        btnSubmit.setOnClickListener {
             val text = postInput.text.toString().trim()
+            if (text.isEmpty()) return@setOnClickListener
 
-            if (text.isNotEmpty()) {
-                if (imageUri != null) uploadImageAndPost(groupId, text)
-                else createPost(groupId, text, "")
-            }
+            if (imageUri != null) uploadImageAndPost(groupId, text)
+            else createPost(groupId, text, "")
         }
 
         return dialog
@@ -88,8 +80,8 @@ class CreatePostDialog : DialogFragment() {
 
         fileRef.putFile(imageUri!!)
             .addOnSuccessListener {
-                fileRef.downloadUrl.addOnSuccessListener { downloadUrl ->
-                    createPost(groupId, text, downloadUrl.toString())
+                fileRef.downloadUrl.addOnSuccessListener { url ->
+                    createPost(groupId, text, url.toString())
                 }
             }
             .addOnFailureListener {
@@ -98,7 +90,6 @@ class CreatePostDialog : DialogFragment() {
     }
 
     private fun createPost(groupId: String, text: String, imageUrl: String) {
-
         val uid = FirebaseAuth.getInstance().uid ?: return
 
         FirebaseFirestore.getInstance().collection("users")
@@ -109,7 +100,7 @@ class CreatePostDialog : DialogFragment() {
                 val name = userDoc.getString("name") ?: "Unknown"
                 val profilePic = userDoc.getString("profilePic") ?: ""
 
-                val postData = hashMapOf(
+                val post = hashMapOf(
                     "userId" to uid,
                     "userName" to name,
                     "userProfilePic" to profilePic,
@@ -122,7 +113,7 @@ class CreatePostDialog : DialogFragment() {
                 db.collection("community_groups")
                     .document(groupId)
                     .collection("posts")
-                    .add(postData)
+                    .add(post)
 
                 dismiss()
             }

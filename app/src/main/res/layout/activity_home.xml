@@ -7,32 +7,32 @@
     android:background="@color/mint_background"
     android:padding="24dp">
 
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome to Vytal!"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="@color/dark_green"
-        android:layout_marginBottom="30dp" />
 
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log Out"
-        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:backgroundTint="@color/dark_green"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Log Out"
         android:textColor="@android:color/white"
-        android:paddingHorizontal="30dp"
-        android:paddingVertical="10dp" />
+        android:textStyle="bold" />
 
     <FrameLayout
-        android:id="@+id/home_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="20dp" />
+        android:id="@+id/mainContainer"
+        android:layout_width="380dp"
+        android:layout_height="630dp">
+
+        <FrameLayout
+            android:id="@+id/home_container"
+            android:layout_width="match_parent"
+            android:layout_height="619dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1" />
+    </FrameLayout>
+
 
 </LinearLayout>

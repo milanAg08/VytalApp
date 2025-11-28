@@ -3,4 +3,6 @@
     <item name="userProfilePic" type="id" />
     <item name="userName" type="id" />
     <item name="btnAddPost" type="id" />
+    <item name="home_container" type="id" />
+    <item name="groupDescription" type="id" />
 </resources>

@@ -48,6 +48,7 @@ dependencies {
 
     // Glide
     implementation("com.github.bumptech.glide:glide:4.15.1")
+    implementation(libs.androidx.recyclerview)
     kapt("com.github.bumptech.glide:compiler:4.15.1")
 }
 

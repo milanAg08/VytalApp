@@ -27,7 +27,7 @@ class PostsAdapter(
         val likeBtn: ImageView = view.findViewById(R.id.likeBtn)
         val likeCount: TextView = view.findViewById(R.id.likeCount)
         val commentBtn: ImageView = view.findViewById(R.id.commentBtn)
-        val postTime: TextView = view.findViewById(R.id.postTime)   // ⭐ Added
+        val postTime: TextView = view.findViewById(R.id.postTime)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -39,15 +39,34 @@ class PostsAdapter(
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = posts[position]
 
-        // ⭐ USERNAME
-        holder.userName.text = post.userName
+        // ⭐ CHECK userId
+        if (post.userId.isNullOrEmpty()) {
+            holder.userName.text = "Unknown User"
+            holder.userProfilePic.setImageResource(R.drawable.ic_profile_placeholder)
+        } else {
 
-        // ⭐ PROFILE PICTURE
-        Glide.with(holder.itemView.context)
-            .load(post.userProfilePic)
-            .placeholder(R.drawable.ic_profile_placeholder)
-            .circleCrop()
-            .into(holder.userProfilePic)
+            // ⭐ Load user details from Firestore
+            db.collection("users")
+                .document(post.userId!!)
+                .get()
+                .addOnSuccessListener { doc ->
+                    if (doc.exists()) {
+                        val name = doc.getString("name") ?: "Unknown"
+                        val photoUrl = doc.getString("photoUrl") ?: ""
+
+                        holder.userName.text = name
+
+                        if (photoUrl.isNotEmpty()) {
+                            Glide.with(holder.itemView.context)
+                                .load(photoUrl)
+                                .circleCrop()
+                                .into(holder.userProfilePic)
+                        } else {
+                            holder.userProfilePic.setImageResource(R.drawable.ic_profile_placeholder)
+                        }
+                    }
+                }
+        }
 
         // POST TEXT
         holder.postText.text = post.text
@@ -62,25 +81,22 @@ class PostsAdapter(
             holder.postImage.visibility = View.GONE
         }
 
-        // ⭐ TIME AGO
+        // TIME AGO
         holder.postTime.text = getTimeAgo(post.timestamp)
 
-        // LIKES COUNT
+        // LIKES
         holder.likeCount.text = "${post.likes.size} likes"
 
-        // LIKE ICON
         if (post.likes.contains(uid)) {
             holder.likeBtn.setImageResource(R.drawable.ic_like_filled)
         } else {
             holder.likeBtn.setImageResource(R.drawable.ic_like_outline)
         }
 
-        // LIKE BUTTON CLICK
         holder.likeBtn.setOnClickListener {
             toggleLike(post)
         }
 
-        // COMMENT BUTTON
         holder.commentBtn.setOnClickListener {
             val activity = holder.itemView.context as AppCompatActivity
             CommentsBottomSheet.newInstance(groupId, post.postId)
@@ -90,7 +106,6 @@ class PostsAdapter(
 
     override fun getItemCount(): Int = posts.size
 
-    // ⭐ TIME AGO FUNCTION
     private fun getTimeAgo(timestamp: Long): String {
         val now = System.currentTimeMillis()
         val diff = now - timestamp
@@ -109,7 +124,6 @@ class PostsAdapter(
         }
     }
 
-    // LIKE TOGGLE
     private fun toggleLike(post: Post) {
         val postRef = db.collection("community_groups")
             .document(groupId)
@@ -129,4 +143,3 @@ class PostsAdapter(
         }
     }
 }
-

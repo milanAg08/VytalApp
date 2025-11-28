@@ -1,21 +1,19 @@
 package com.example.vytal
 
-
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 
-class GroupsAdapter(private val groups: List<Group>) :
-    RecyclerView.Adapter<GroupsAdapter.GroupViewHolder>() {
+class GroupsAdapter(
+    private val groups: ArrayList<Group>,
+    private val onClick: (Group) -> Unit
+) : RecyclerView.Adapter<GroupsAdapter.GroupViewHolder>() {
 
-    class GroupViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val name: TextView = itemView.findViewById(R.id.groupName)
-        val desc: TextView = itemView.findViewById(R.id.groupDesc)
+    inner class GroupViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val groupName: TextView = view.findViewById(R.id.groupName)
+        val groupDesc: TextView = view.findViewById(R.id.groupDesc)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupViewHolder {
@@ -25,24 +23,14 @@ class GroupsAdapter(private val groups: List<Group>) :
     }
 
     override fun onBindViewHolder(holder: GroupViewHolder, position: Int) {
-
-        val group = groups[position]
-        holder.name.text = groups[position].name
-        holder.desc.text = groups[position].description
-
+        val g = groups[position]
+        holder.groupName.text = g.name
+        holder.groupDesc.text = g.description
 
         holder.itemView.setOnClickListener {
-            val fragment = GroupDetailFragment()
-            fragment.arguments = bundleOf("groupId" to group.id)
-
-
-            (holder.itemView.context as AppCompatActivity).supportFragmentManager.beginTransaction()
-                .replace(R.id.home_container, fragment)
-                .addToBackStack(null)
-                .commit()
-
-
+            onClick(g)
         }
     }
+
     override fun getItemCount(): Int = groups.size
 }
