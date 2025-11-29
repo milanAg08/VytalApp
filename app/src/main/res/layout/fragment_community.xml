@@ -6,15 +6,21 @@
     android:padding="20dp">
 
     <!-- JOIN BUTTON SHOWN ONLY WHEN NO groupId -->
-    <Button
-        android:id="@+id/btnJoinCommunities"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Join Community"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="10dp" />
+
 
     <!-- POSTS LIST (ONLY WHEN groupId IS NOT EMPTY) -->
+
+    <Button
+        android:id="@+id/btnJoinCommunities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/dark_green"
+        android:text="Join Community" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/postsRecycler"
         android:layout_width="match_parent"
