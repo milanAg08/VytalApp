@@ -1,2 +1,5 @@
 /build
 .kotlin/
+venv/
+.idea/
+.gradle/
