@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.example.vytal.ui.HomeFragment
 import com.example.vytal.ui.CommunityFragment
 import com.example.vytal.ui.EventFragment
+import com.example.vytal.ui.MySpaceFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,7 +33,8 @@ class MainActivity : AppCompatActivity() {
             val selectedFragment: Fragment = when (menuItem.itemId) {
                 R.id.nav_home -> HomeFragment()
                 R.id.nav_community -> CommunityFragment()
-                R.id.nav_events -> EventFragment() // placeholder; create EventsFragment if needed
+                R.id.nav_events -> EventFragment()
+                R.id.nav_myspace -> MySpaceFragment() // placeholder; create EventsFragment if needed
                 else -> HomeFragment()
             }
             supportFragmentManager.beginTransaction()

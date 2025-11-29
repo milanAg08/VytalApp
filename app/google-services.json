@@ -2,7 +2,8 @@
   "project_info": {
     "project_number": "14762398519",
     "project_id": "vytal-7e88c",
-    "storage_bucket": "vytal-7e88c.firebasestorage.app"
+    "storage_bucket": "vytal-7e88c.firebasestorage.app",
+    "firebase_url": "https://vytal-7e88c-default-rtdb.firebaseio.com"
   },
   "client": [
     {

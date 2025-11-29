@@ -32,5 +32,62 @@
     <color name="mint_background">#E9F5F0</color>
     <color name="dark_green">#2A8C69</color>
     <color name="hint_green">#7DBFA1</color>
+    
+    <!-- Medical Chip Colors -->
+    <color name="medical_chip_bg">#F0F9FF</color>
+    <color name="medical_chip_selected">#DBEAFE</color>
+    <color name="medical_blue">#3B82F6</color>
+    <color name="medical_text_primary">#1E3A5F</color>
+    
+    <!-- Confidence Colors -->
+    <color name="confidence_high">#10B981</color>
+    <color name="confidence_medium">#F59E0B</color>
+    <color name="confidence_low">#EF4444</color>
+    
+    <!-- Pastel Medical Theme for Trend Charts -->
+    <color name="trend_bg">#F8FAFB</color>
+    <color name="trend_card_bg">#FFFFFF</color>
+    <color name="trend_shadow">#1A000000</color>
+    
+    <!-- Pastel Chart Colors -->
+    <color name="pastel_blue">#7DD3FC</color>
+    <color name="pastel_blue_dark">#38BDF8</color>
+    <color name="pastel_green">#86EFAC</color>
+    <color name="pastel_green_dark">#4ADE80</color>
+    <color name="pastel_purple">#C4B5FD</color>
+    <color name="pastel_purple_dark">#A78BFA</color>
+    <color name="pastel_pink">#F9A8D4</color>
+    <color name="pastel_pink_dark">#F472B6</color>
+    <color name="pastel_orange">#FDBA74</color>
+    <color name="pastel_orange_dark">#FB923C</color>
+    <color name="pastel_teal">#5EEAD4</color>
+    <color name="pastel_teal_dark">#2DD4BF</color>
+    <color name="pastel_yellow">#FDE047</color>
+    <color name="pastel_red">#FCA5A5</color>
+    <color name="pastel_red_dark">#F87171</color>
+    
+    <!-- Zone Colors (for Asthma peak flow) -->
+    <color name="zone_green">#22C55E</color>
+    <color name="zone_green_light">#DCFCE7</color>
+    <color name="zone_yellow">#EAB308</color>
+    <color name="zone_yellow_light">#FEF9C3</color>
+    <color name="zone_red">#EF4444</color>
+    <color name="zone_red_light">#FEE2E2</color>
+    
+    <!-- Analysis Highlight Colors -->
+    <color name="analysis_improvement">#059669</color>
+    <color name="analysis_improvement_bg">#D1FAE5</color>
+    <color name="analysis_alert">#DC2626</color>
+    <color name="analysis_alert_bg">#FEE2E2</color>
+    <color name="analysis_stable">#2563EB</color>
+    <color name="analysis_stable_bg">#DBEAFE</color>
+    
+    <!-- Trend UI Colors -->
+    <color name="trend_text_primary">#1F2937</color>
+    <color name="trend_text_secondary">#6B7280</color>
+    <color name="trend_text_muted">#9CA3AF</color>
+    <color name="trend_border">#E5E7EB</color>
+    <color name="trend_nav_button">#F3F4F6</color>
+    <color name="trend_nav_button_pressed">#E5E7EB</color>
 </resources>
 

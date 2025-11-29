@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/trend_bg"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_nav_button"
+                android:src="@drawable/ic_back_arrow"
+                android:scaleType="center"
+                android:contentDescription="Back" />
+
+            <FrameLayout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/bg_icon_hypertension">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_health_heart" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hypertension"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/trend_text_primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Track BP &amp; pulse"
+                    android:textSize="13sp"
+                    android:textColor="@color/trend_text_secondary" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnViewTrends"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Trends"
+                android:textSize="12sp"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/pastel_pink_dark"
+                android:textColor="@color/white"
+                android:paddingHorizontal="16dp"
+                app:cornerRadius="18dp"
+                app:icon="@drawable/ic_trend_chart"
+                app:iconSize="16dp"
+                app:iconPadding="4dp"
+                app:iconTint="@color/white" />
+        </LinearLayout>
+
+        <!-- Input Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enter Today's Readings"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/trend_text_primary"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- BP Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Systolic (mmHg)"
+                            android:textSize="14sp"
+                            android:textColor="@color/trend_text_secondary"
+                            android:layout_marginBottom="6dp" />
+
+                        <EditText
+                            android:id="@+id/etSystolic"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            android:background="@drawable/bg_symptom_input"
+                            android:paddingHorizontal="16dp"
+                            android:hint="e.g., 120"
+                            android:inputType="number"
+                            android:textSize="16sp"
+                    android:textColor="@color/trend_text_primary"
+                    android:textColorHint="@color/trend_text_muted" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Diastolic (mmHg)"
+                            android:textSize="14sp"
+                            android:textColor="@color/trend_text_secondary"
+                            android:layout_marginBottom="6dp" />
+
+                        <EditText
+                            android:id="@+id/etDiastolic"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            android:background="@drawable/bg_symptom_input"
+                            android:paddingHorizontal="16dp"
+                            android:hint="e.g., 80"
+                            android:inputType="number"
+                            android:textSize="16sp"
+                    android:textColor="@color/trend_text_primary"
+                    android:textColorHint="@color/trend_text_muted" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Pulse -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pulse (bpm)"
+                    android:textSize="14sp"
+                    android:textColor="@color/trend_text_secondary"
+                    android:layout_marginBottom="6dp" />
+
+                <EditText
+                    android:id="@+id/etPulse"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:background="@drawable/bg_symptom_input"
+                    android:paddingHorizontal="16dp"
+                    android:hint="e.g., 72"
+                    android:inputType="number"
+                    android:textSize="16sp"
+                    android:textColor="@color/trend_text_primary"
+                    android:textColorHint="@color/trend_text_muted" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/btnSaveReport"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Save &amp; Analyze Report"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/buttonGreenDark"
+            android:textColor="@color/white"
+            android:layout_marginBottom="16dp"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/ic_trend_chart"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconTint="@color/white" />
+
+        <!-- Analysis Result Card -->
+        <include layout="@layout/layout_report_analysis" />
+
+        <!-- Reference Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/analysis_improvement_bg"
+            android:layout_marginTop="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="❤️ Healthy Ranges"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/analysis_improvement"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="• Normal: &lt;120/80 mmHg\n• Elevated: 120-129/&lt;80\n• High: 130-139/80-89\n• Pulse: 60-100 bpm"
+                    android:textSize="13sp"
+                    android:textColor="@color/trend_text_secondary"
+                    android:lineSpacingExtra="4dp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>

@@ -28,6 +28,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        dataBinding = true
+        viewBinding= true
+    }
 }
 dependencies {
     implementation(libs.androidx.core.ktx)
@@ -47,14 +51,17 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.recyclerview:recyclerview:1.3.1")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
-
+    implementation("org.tensorflow:tensorflow-lite:2.11.0")
+    
+    // MPAndroidChart for trend visualization
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    
     // --- Testing ---
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")

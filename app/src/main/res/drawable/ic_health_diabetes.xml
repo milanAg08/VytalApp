@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Blood drop icon for diabetes -->
+    <path
+        android:fillColor="@color/pastel_red_dark"
+        android:pathData="M12,2.69l5.66,5.66a8,8 0,1 1,-11.31 0zM12,20a6,6 0,0 0,6 -6c0,-3.31 -2.69,-6 -6,-8.89a31.78,31.78 0,0 0,-6 8.89,6 6,0 0,0 6,6z"/>
+    <path
+        android:fillColor="@color/white"
+        android:pathData="M10,13h4v2h-4zM11,10h2v6h-2z"/>
+</vector>
+

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/trend_bg"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_nav_button"
+                android:src="@drawable/ic_back_arrow"
+                android:scaleType="center"
+                android:contentDescription="Back" />
+
+            <FrameLayout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/bg_icon_stress">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_health_stress" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wellness"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/trend_text_primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Track sleep &amp; stress"
+                    android:textSize="13sp"
+                    android:textColor="@color/trend_text_secondary" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnViewTrends"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Trends"
+                android:textSize="12sp"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/pastel_purple_dark"
+                android:textColor="@color/white"
+                android:paddingHorizontal="16dp"
+                app:cornerRadius="18dp"
+                app:icon="@drawable/ic_trend_chart"
+                app:iconSize="16dp"
+                app:iconPadding="4dp"
+                app:iconTint="@color/white" />
+        </LinearLayout>
+
+        <!-- Input Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Daily Check-in"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/trend_text_primary"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Sleep Hours -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hours of Sleep Last Night"
+                    android:textSize="14sp"
+                    android:textColor="@color/trend_text_secondary"
+                    android:layout_marginBottom="6dp" />
+
+                <EditText
+                    android:id="@+id/etSleepHours"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:background="@drawable/bg_symptom_input"
+                    android:paddingHorizontal="16dp"
+                    android:hint="e.g., 7.5"
+                    android:inputType="numberDecimal"
+                    android:textSize="16sp"
+                    android:textColor="@color/trend_text_primary"
+                    android:textColorHint="@color/trend_text_muted"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Stress Score -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stress Level (0-10)"
+                    android:textSize="14sp"
+                    android:textColor="@color/trend_text_secondary"
+                    android:layout_marginBottom="6dp" />
+
+                <EditText
+                    android:id="@+id/etStressScore"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:background="@drawable/bg_symptom_input"
+                    android:paddingHorizontal="16dp"
+                    android:hint="0 = calm, 10 = very stressed"
+                    android:inputType="number"
+                    android:textSize="16sp"
+                    android:textColor="@color/trend_text_primary"
+                    android:textColorHint="@color/trend_text_muted" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/btnSaveReport"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Save &amp; Analyze Report"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/buttonGreenDark"
+            android:textColor="@color/white"
+            android:layout_marginBottom="16dp"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/ic_trend_chart"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconTint="@color/white" />
+
+        <!-- Analysis Result Card -->
+        <include layout="@layout/layout_report_analysis" />
+
+        <!-- Guide Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="#F3E8FF"
+            android:layout_marginTop="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🧘 Wellness Guidelines"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/pastel_purple_dark"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="• Optimal sleep: 7-9 hours\n• Low stress: 0-3 (healthy)\n• Moderate: 4-6 (monitor)\n• High: 7-10 (seek support)"
+                    android:textSize="13sp"
+                    android:textColor="@color/trend_text_secondary"
+                    android:lineSpacingExtra="4dp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>

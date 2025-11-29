@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/analysisResultCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/white"
+    android:visibility="gone">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <View
+                android:id="@+id/statusIndicator"
+                android:layout_width="4dp"
+                android:layout_height="28dp"
+                android:background="@color/confidence_high"
+                android:layout_marginEnd="12dp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Report Analysis"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/trend_text_primary" />
+
+            <TextView
+                android:id="@+id/tvOverallStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Normal"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_status_badge"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="4dp" />
+        </LinearLayout>
+
+        <!-- Summary -->
+        <TextView
+            android:id="@+id/tvSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your readings are within healthy ranges."
+            android:textSize="14sp"
+            android:textColor="@color/trend_text_secondary"
+            android:lineSpacingExtra="2dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Metrics Analysis Container -->
+        <LinearLayout
+            android:id="@+id/metricsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Tips Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_tips_container"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💡 Personalized Tips"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/trend_text_primary"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:id="@+id/tipsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
