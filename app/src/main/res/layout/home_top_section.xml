@@ -45,8 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Answer a few quick questions to connect with tools, experts, and communities designed for your condition.
-Track your reports, join wellness events like yoga, and share experiences with others managing the same chronic condition."
+        android:text="Answer a few quick questions to connect with tools, experts, and communities designed for your condition. Track your reports, join wellness events like yoga, and share experiences with others managing the same chronic condition."
         android:textSize="14sp"
         android:textColor="#555555"
         android:gravity="center"

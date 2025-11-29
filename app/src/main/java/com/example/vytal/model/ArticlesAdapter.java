@@ -34,9 +34,13 @@ public class ArticlesAdapter extends RecyclerView.Adapter<ArticlesAdapter.Articl
         holder.title.setText(article.getTitle());
         holder.subtitle.setText(article.getSubtitle());
 
-        // Example click listener: open article detail or webview (placeholder)
+        // Click listener: open article detail activity
         holder.itemView.setOnClickListener(v -> {
-            // In a real app, start an activity or open a webview with article.getUrl()
+            android.content.Intent intent = new android.content.Intent(context, com.example.vytal.ui.ArticleDetailActivity.class);
+            intent.putExtra("article_title", article.getTitle());
+            intent.putExtra("article_subtitle", article.getSubtitle());
+            intent.putExtra("article_url", article.getUrl());
+            context.startActivity(intent);
         });
     }
 

@@ -1,22 +1,22 @@
 <resources>
     <!-- Primary Brand Colors -->
-    <color name="colorPrimary">#40A2E3</color> <!-- Soft purple (top bar) -->
+    <color name="colorPrimary">#40A2E3</color>
     <color name="colorPrimaryVariant">#BBE2EC</color>
     <color name="colorOnPrimary">#FFFFFF</color>
 
     <!-- Secondary Accent Colors -->
-    <color name="colorSecondary">#10B981</color> <!-- Mint green accent -->
+    <color name="colorSecondary">#10B981</color>
     <color name="colorSecondaryVariant">#059669</color>
     <color name="colorOnSecondary">#FFFFFF</color>
 
     <!-- Backgrounds -->
-    <color name="colorBackground">#E8F5F2</color> <!-- Very light mint background -->
+    <color name="colorBackground">#E8F5F2</color>
     <color name="colorSurface">#FFFFFF</color>
     <color name="colorOnBackground">#1A1A1A</color>
     <color name="colorOnSurface">#1A1A1A</color>
 
     <!-- Additional UI Colors -->
-    <color name="hintText">#6B7280</color> <!-- Muted gray -->
+    <color name="hintText">#6B7280</color>
     <color name="dividerColor">#E5E7EB</color>
     <color name="colorError">#B00020</color>
     <color name="colorOnError">#FFFFFF</color>
@@ -32,5 +32,28 @@
     <color name="mint_background">#E9F5F0</color>
     <color name="dark_green">#2A8C69</color>
     <color name="hint_green">#7DBFA1</color>
+
+    <!-- Category Colors -->
+    <color name="categoryYoga">#8B5CF6</color>
+    <color name="categoryFitness">#EF4444</color>
+    <color name="categoryDiet">#10B981</color>
+    <color name="categoryWellness">#3B82F6</color>
+    <color name="categoryHealth">#F97316</color>
+    <color name="categoryCustom">#F59E0B</color>
+
+    <!-- Chip Colors -->
+    <color name="chipSelected">#10B981</color>
+    <color name="chipUnselected">#F3F4F6</color>
+    <color name="chipTextSelected">#FFFFFF</color>
+    <color name="chipTextUnselected">#374151</color>
+
+    <!-- Dark Theme Colors -->
+    <color name="darkBackground">#0F172A</color>
+    <color name="darkSurface">#1E293B</color>
+    <color name="darkCard">#334155</color>
+    <color name="darkTextPrimary">#F1F5F9</color>
+    <color name="darkTextSecondary">#94A3B8</color>
+    <color name="darkAccent">#3B82F6</color>
+    <color name="darkDivider">#334155</color>
 </resources>
 

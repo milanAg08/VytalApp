@@ -29,6 +29,36 @@ class CommunityFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_community, container, false)
         recyclerView = view.findViewById(R.id.recyclerViewCommunity)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        
+        // Add scroll listener to hide/show bottom navigation
+        recyclerView.addOnScrollListener(object : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
+                try {
+                    val activity = activity as? com.example.vytal.MainActivity
+                    
+                    if (!recyclerView.canScrollVertically(-1)) {
+                        // At the top - always show bottom nav
+                        activity?.showBottomNavigation()
+                    } else if (dy > 0 && recyclerView.canScrollVertically(1)) {
+                        // Scrolling down
+                        activity?.hideBottomNavigation()
+                    } else if (dy < 0) {
+                        // Scrolling up
+                        activity?.showBottomNavigation()
+                    }
+                } catch (e: Exception) {
+                    // Ignore scroll listener errors
+                }
+            }
+        })
+        
+        // Ensure bottom nav is visible when fragment is first shown
+        try {
+            (activity as? com.example.vytal.MainActivity)?.showBottomNavigation()
+        } catch (e: Exception) {
+            // Ignore if activity is not available yet
+        }
+        
         fetchCommunityPosts()
         return view
     }
