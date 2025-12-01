@@ -3,6 +3,7 @@
     android:background="@color/colorBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="60dp"
     tools:context=".ui.SymptomCheckerFragment">
 
     <LinearLayout
