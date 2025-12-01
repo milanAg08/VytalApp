@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/commentText"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textSize="16sp"
+    android:orientation="vertical"
     android:padding="12dp"
-    android:background="@android:color/white"
-    android:layout_margin="8dp"/>
+    android:layout_marginBottom="8dp"
+    android:background="#FFFFFF"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp">
+
+    <TextView
+        android:id="@+id/commentText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#374151"
+        android:lineSpacingExtra="2dp"/>
+</LinearLayout>

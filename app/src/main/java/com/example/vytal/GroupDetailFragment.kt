@@ -1,177 +1,226 @@
 package com.example.vytal
 
+import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebResourceError
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import android.widget.Button
-import android.widget.EditText
+import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.vytal.R
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.chip.Chip
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.*
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [GroupDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class GroupDetailFragment : Fragment() {
 
-    private lateinit var webView: WebView
-    private lateinit var commentsRecycler: RecyclerView
-    private lateinit var adapter: CommentsAdapter
-    private val commentsList = ArrayList<Comment>()
-
+    private lateinit var postsRecycler: RecyclerView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var emptyStateLayout: View
+    private lateinit var fabCreatePost: ExtendedFloatingActionButton
+    private lateinit var tvGroupName: TextView
+    private lateinit var tvGroupDescription: TextView
+    private lateinit var chipMemberCount: Chip
+    
+    private lateinit var adapter: PostsAdapter
+    private val postsList = ArrayList<Post>()
+    
     private val db = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
+    private val currentUserId = auth.currentUser?.uid ?: ""
     private var groupId: String = ""
+    private var groupName: String = ""
+    private var groupDescription: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val view = inflater.inflate(R.layout.fragment_group_detail, container, false)
-
+        
         groupId = arguments?.getString("groupId") ?: ""
-
-        webView = view.findViewById(R.id.groupWebView)
-        commentsRecycler = view.findViewById(R.id.commentsRecycler)
-
-        commentsRecycler.layoutManager = LinearLayoutManager(requireContext())
-        adapter = CommentsAdapter(this.commentsList)
-        commentsRecycler.adapter = adapter
-
-        val commentInput = view.findViewById<EditText>(R.id.commentInput)
-        val btnSubmit = view.findViewById<Button>(R.id.btnSubmitComment)
-
-        // Load health article
-        loadWebArticle(groupId)
-
-        // Load existing comments
-        loadComments()
-
-        btnSubmit.setOnClickListener {
-            val text = commentInput.text.toString().trim()
-            if (text.isNotEmpty()) {
-                saveComment(text)
-                commentInput.text.clear()
-            }
+        
+        initViews(view)
+        setupRecyclerView()
+        loadGroupInfo()
+        loadPosts()
+        
+        fabCreatePost.setOnClickListener {
+            showCreatePostDialog()
         }
-
+        
         return view
     }
 
-    private fun loadWebArticle(groupId: String) {
-        val url = when (groupId) {
-            "diabetes_support" -> "https://www.healthline.com/diabetes"
-            "fitness_yoga" -> "https://www.healthline.com/health/fitness-exercise"
-            "heart_health_hub" -> "https://www.healthline.com/health/heart-disease"
-            "mental_wellness" -> "https://www.healthline.com/health/mental-health"
-            else -> "https://www.healthline.com/"
-        }
-
-        // Configure WebView settings
-        webView.settings.apply {
-            javaScriptEnabled = true
-            domStorageEnabled = true
-            loadWithOverviewMode = true
-            useWideViewPort = true
-            builtInZoomControls = false
-            displayZoomControls = false
-            setSupportZoom(true)
-            allowFileAccess = false
-            allowContentAccess = false
-        }
-
-        // Set WebViewClient to handle errors
-        webView.webViewClient = object : WebViewClient() {
-            override fun onReceivedError(
-                view: WebView?,
-                request: WebResourceRequest?,
-                error: WebResourceError?
-            ) {
-                super.onReceivedError(view, request, error)
-                if (request?.isForMainFrame == true) {
-                    // Show error message
-                    webView.loadDataWithBaseURL(
-                        null,
-                        """
-                        <html>
-                        <body style="font-family: Arial; padding: 20px; text-align: center;">
-                            <h2>Unable to Load Content</h2>
-                            <p>Please check your internet connection and try again.</p>
-                            <p style="color: #666; font-size: 12px;">Error: ${error?.description ?: "Network error"}</p>
-                        </body>
-                        </html>
-                        """.trimIndent(),
-                        "text/html",
-                        "UTF-8",
-                        null
-                    )
-                    Toast.makeText(
-                        requireContext(),
-                        "Unable to load webpage. Please check your internet connection.",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-            }
-
-            override fun onPageFinished(view: WebView?, url: String?) {
-                super.onPageFinished(view, url)
-                // Hide loading indicator if needed
-            }
-        }
-
-        try {
-            webView.loadUrl(url)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Toast.makeText(
-                requireContext(),
-                "Error loading content: ${e.message}",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+    private fun initViews(view: View) {
+        postsRecycler = view.findViewById(R.id.postsRecycler)
+        progressBar = view.findViewById(R.id.progressBar)
+        emptyStateLayout = view.findViewById(R.id.layoutEmptyState)
+        fabCreatePost = view.findViewById(R.id.fabCreatePost)
+        tvGroupName = view.findViewById(R.id.tvGroupName)
+        tvGroupDescription = view.findViewById(R.id.tvGroupDescription)
+        chipMemberCount = view.findViewById(R.id.chipMemberCount)
     }
 
-    private fun saveComment(text: String) {
-        val commentData = hashMapOf(
-            "text" to text,
-            "timestamp" to System.currentTimeMillis()
-        )
-
-        db.collection("community_groups")
-            .document(groupId)
-            .collection("comments")
-            .add(commentData)
+    private fun setupRecyclerView() {
+        postsRecycler.layoutManager = LinearLayoutManager(requireContext())
+        adapter = PostsAdapter(postsList, groupId)
+        postsRecycler.adapter = adapter
     }
 
-    private fun loadComments() {
+    private fun loadGroupInfo() {
+        if (groupId.isEmpty()) return
+        
         db.collection("community_groups")
             .document(groupId)
-            .collection("comments")
-            .orderBy("timestamp")
-            .addSnapshotListener { snapshots, _ ->
+            .get()
+            .addOnSuccessListener { doc ->
+                groupName = doc.getString("name") ?: "Group"
+                groupDescription = doc.getString("description") ?: ""
+                
+                tvGroupName.text = groupName
+                tvGroupDescription.text = groupDescription
+                
+                // Load member count
+                doc.reference.collection("members")
+                    .get()
+                    .addOnSuccessListener { members ->
+                        chipMemberCount.text = "${members.size()} members"
+                    }
+            }
+    }
 
-                commentsList.clear()
-                for (doc in snapshots!!) {
-                    val text = doc.getString("text") ?: ""
-                    commentsList.add(Comment(text))
+    private fun loadPosts() {
+        if (groupId.isEmpty()) {
+            showEmptyState()
+            return
+        }
+        
+        progressBar.visibility = View.VISIBLE
+        emptyStateLayout.visibility = View.GONE
+        
+        // Real-time listener for posts
+        db.collection("community_groups")
+            .document(groupId)
+            .collection("posts")
+            .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
+            .addSnapshotListener { snapshots, error ->
+                progressBar.visibility = View.GONE
+                
+                if (error != null) {
+                    Toast.makeText(requireContext(), "Error loading posts: ${error.message}", Toast.LENGTH_SHORT).show()
+                    return@addSnapshotListener
                 }
-
+                
+                postsList.clear()
+                
+                snapshots?.forEach { doc ->
+                    val id = doc.id
+                    val userId = doc.getString("userId") ?: ""
+                    val userName = doc.getString("userName") ?: "Anonymous"
+                    val title = doc.getString("title") ?: ""
+                    val content = doc.getString("content") ?: ""
+                    val timestamp = doc.getLong("timestamp") ?: System.currentTimeMillis()
+                    val likes = doc.get("likes") as? List<String> ?: emptyList()
+                    val likeCount = doc.getLong("likeCount")?.toInt() ?: likes.size
+                    val commentCount = doc.getLong("commentCount")?.toInt() ?: 0
+                    val isLiked = likes.contains(currentUserId)
+                    
+                    postsList.add(Post(id, groupId, userId, userName, title, content, timestamp, likes, likeCount, commentCount, isLiked))
+                }
+                
+                if (postsList.isEmpty()) {
+                    showEmptyState()
+                } else {
+                    emptyStateLayout.visibility = View.GONE
+                    postsRecycler.visibility = View.VISIBLE
+                }
+                
                 adapter.notifyDataSetChanged()
+            }
+    }
+
+    private fun showEmptyState() {
+        progressBar.visibility = View.GONE
+        postsRecycler.visibility = View.GONE
+        emptyStateLayout.visibility = View.VISIBLE
+    }
+
+    private fun showCreatePostDialog() {
+        if (currentUserId.isEmpty()) {
+            Toast.makeText(requireContext(), "Please login to create posts", Toast.LENGTH_SHORT).show()
+            return
+        }
+        
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.dialog_create_post)
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        
+        val etPostTitle = dialog.findViewById<TextInputEditText>(R.id.etPostTitle)
+        val etPostContent = dialog.findViewById<TextInputEditText>(R.id.etPostContent)
+        val btnCancel = dialog.findViewById<MaterialButton>(R.id.btnCancel)
+        val btnPost = dialog.findViewById<MaterialButton>(R.id.btnPost)
+        
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+        
+        btnPost.setOnClickListener {
+            val title = etPostTitle?.text?.toString()?.trim() ?: ""
+            val content = etPostContent?.text?.toString()?.trim() ?: ""
+            
+            if (title.isEmpty()) {
+                Toast.makeText(requireContext(), "Please enter a title", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            
+            if (content.isEmpty()) {
+                Toast.makeText(requireContext(), "Please enter post content", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            
+            createPost(title, content)
+            dialog.dismiss()
+        }
+        
+        dialog.show()
+    }
+
+    private fun createPost(title: String, content: String) {
+        val userName = auth.currentUser?.email?.split("@")?.get(0) ?: "Anonymous"
+        
+        val postData = hashMapOf(
+            "userId" to currentUserId,
+            "userName" to userName,
+            "title" to title,
+            "content" to content,
+            "timestamp" to System.currentTimeMillis(),
+            "likes" to emptyList<String>(),
+            "likeCount" to 0,
+            "commentCount" to 0
+        )
+        
+        db.collection("community_groups")
+            .document(groupId)
+            .collection("posts")
+            .add(postData)
+            .addOnSuccessListener {
+                Toast.makeText(requireContext(), "Post created successfully!", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Error creating post: ${it.message}", Toast.LENGTH_SHORT).show()
             }
     }
 }

@@ -1,5 +1,9 @@
 package com.example.vytal
 
 data class Comment(
-    val text: String = ""
+    val id: String = "",
+    val text: String = "",
+    val userId: String = "",
+    val userName: String = "Anonymous",
+    val timestamp: Long = System.currentTimeMillis()
 )
