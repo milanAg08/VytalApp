@@ -1,71 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:paddingBottom="80dp">
+    android:background="#F5F5F5">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <!-- WebView for showing article - fixed height, scrolls internally -->
-        <WebView
-            android:id="@+id/groupWebView"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="400dp"/>
+            android:layout_height="wrap_content">
 
-        <!-- Comment section header -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Comments &amp; Reviews"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:padding="16dp"
-            android:paddingTop="20dp"
-            android:background="?attr/colorSurface"/>
+            <!-- Group Header Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@android:color/white">
 
-        <!-- Comment input -->
-        <EditText
-            android:id="@+id/commentInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="56dp"
-            android:hint="Write your review..."
-            android:padding="12dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bg_symptom_input"
-            android:textColor="@color/trend_text_primary"
-            android:textColorHint="@color/trend_text_muted"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
 
-        <!-- Submit comment -->
-        <Button
-            android:id="@+id/btnSubmitComment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:text="Submit Review"
-            android:textAllCaps="false"
-            android:backgroundTint="@color/buttonGreenDark"
-            android:textColor="@color/white"
-            android:paddingHorizontal="24dp"
-            app:cornerRadius="12dp"/>
+                    <TextView
+                        android:id="@+id/tvGroupName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Diabetes Support Group"
+                        android:textStyle="bold"
+                        android:textSize="22sp"
+                        android:textColor="#1976D2"
+                        android:layout_marginBottom="8dp"/>
 
-        <!-- List of comments -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/commentsRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:nestedScrollingEnabled="false"
-            android:paddingBottom="16dp"/>
+                    <TextView
+                        android:id="@+id/tvGroupDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="A supportive community for people managing diabetes. Share tips, recipes, and encouragement!"
+                        android:textSize="14sp"
+                        android:textColor="#666"
+                        android:lineSpacingExtra="2dp"
+                        android:layout_marginBottom="12dp"/>
 
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+                    <TextView
+                        android:id="@+id/tvMemberCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 members"
+                        android:textSize="13sp"
+                        android:textColor="#999"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Posts Section Header -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Posts"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="#1976D2"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="12dp"/>
+
+            <!-- Progress Bar -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:visibility="gone"/>
+
+            <!-- Posts RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/postsRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp"
+                android:paddingBottom="100dp"
+                android:clipToPadding="false"/>
+
+            <!-- Empty State -->
+            <TextView
+                android:id="@+id/tvEmptyState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No posts yet. Be the first to share!"
+                android:textSize="16sp"
+                android:textColor="#999"
+                android:gravity="center"
+                android:padding="32dp"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Floating Action Button for Create Post -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabCreatePost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_input_add"
+        app:tint="@android:color/white"
+        app:backgroundTint="#2196F3"
+        app:elevation="8dp"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

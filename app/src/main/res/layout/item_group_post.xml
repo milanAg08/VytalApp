@@ -4,11 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="0dp"
-    android:layout_marginBottom="16dp"
-    app:cardCornerRadius="16dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="12dp"
     app:cardElevation="2dp"
-    app:cardBackgroundColor="#1E1E1E">
+    app:cardBackgroundColor="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- User Info Row -->
+        <!-- Author and Timestamp Row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,37 +24,24 @@
             android:gravity="center_vertical"
             android:layout_marginBottom="12dp">
 
-            <View
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/ic_launcher_foreground"
-                android:backgroundTint="#4CAF50"
-                android:clipToOutline="true"
-                android:outlineProvider="bounds"/>
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/tvUserName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:layout_marginStart="12dp">
+                android:text="Sarah Johnson"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#1976D2"/>
 
-                <TextView
-                    android:id="@+id/tvUserName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:textColor="#FFFFFF"/>
+            <TextView
+                android:id="@+id/tvTimestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dec 01, 2025 at 13:43"
+                android:textSize="12sp"
+                android:textColor="#999"/>
 
-                <TextView
-                    android:id="@+id/tvTimestamp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="#B0B0B0"
-                    android:layout_marginTop="2dp"/>
-            </LinearLayout>
         </LinearLayout>
 
         <!-- Post Content -->
@@ -63,11 +50,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textColor="#E0E0E0"
+            android:textColor="#333"
             android:lineSpacingExtra="4dp"
             android:layout_marginBottom="12dp"/>
 
-        <!-- Action Buttons -->
+        <!-- Like and Comment Actions -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,18 +65,28 @@
                 android:id="@+id/btnLike"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@android:drawable/btn_star_big_on"
+                android:src="@android:drawable/btn_star_big_off"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Like"
-                app:tint="#B0B0B0"/>
+                app:tint="#2196F3"/>
+
+            <TextView
+                android:id="@+id/tvLikeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LIKE"
+                android:textSize="13sp"
+                android:textColor="#2196F3"
+                android:layout_marginEnd="8dp"/>
 
             <TextView
                 android:id="@+id/tvLikesCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#B0B0B0"
-                android:layout_marginEnd="20dp"/>
+                android:text="2 likes"
+                android:textSize="13sp"
+                android:textColor="#999"
+                android:layout_marginEnd="16dp"/>
 
             <ImageButton
                 android:id="@+id/btnComment"
@@ -98,16 +95,19 @@
                 android:src="@android:drawable/ic_menu_edit"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Comment"
-                app:tint="#B0B0B0"/>
+                app:tint="#2196F3"/>
 
             <TextView
-                android:id="@+id/tvCommentsCount"
+                android:id="@+id/tvCommentText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#B0B0B0"/>
+                android:text="COMMENT"
+                android:textSize="13sp"
+                android:textColor="#2196F3"/>
 
         </LinearLayout>
 
     </LinearLayout>
+
 </com.google.android.material.card.MaterialCardView>
+

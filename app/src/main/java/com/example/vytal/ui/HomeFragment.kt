@@ -545,8 +545,8 @@ class HomeFragment : Fragment() {
             filteredArticlesList.addAll(articlesList)
         } else {
             for (article in articlesList) {
-                val titleMatch = article.getTitle().lowercase().contains(currentSearchQuery)
-                val subtitleMatch = article.getSubtitle().lowercase().contains(currentSearchQuery)
+                val titleMatch = article.title.lowercase().contains(currentSearchQuery)
+                val subtitleMatch = article.subtitle.lowercase().contains(currentSearchQuery)
                 if (titleMatch || subtitleMatch) {
                     filteredArticlesList.add(article)
                 }
